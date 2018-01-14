@@ -8,8 +8,30 @@
 <body>
     <div id="app">
         <input type="text" v-on:input="changeTitle">
-        <p>{{title}}</p>
+        <!--<p v-once>{{ title }}</p>-->
+        <p>{{ title }}</p>
+        <p>{{ test() }}</p>
+        <a v-bind:href="link">google</a>
     </div>
-    <script src="app.js"></script>
+    <!--<script src="app.js"></script>-->
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                title: 'hello world!',
+                link:  'www.google.com',
+            },
+            methods: {
+                changeTitle: function (event) {
+                    this.title = event.target.value;
+                },
+                test: function (event) {
+                    // this.title = 'bbbbb';
+                    return "aaa";
+                }
+            }
+        });
+
+    </script>
 </body>
 </html>
