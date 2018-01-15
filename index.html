@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-on:input="changeTitle()"><br>
+        <!--<p v-once>{{ title }}</p>-->
+        <p>{{ title }}</p>
+        <p>{{ test() }}</p>
+        <a v-bind:href="link">google</a><br>
+        <button v-on:click="click(2)">click</button>
+        <button v-on:click="count += 2">click</button>
+        <p>{{count}}</p><br>
+        <input v-on:input="alert('cky', $event)">
+        <input v-on:keyup.enter="submit('ky', $event)"><br>
+        computed: <button v-on:click="tryComputed">count2</button>
+        <p v-bind="count2"></p>
+    </div>
+    <!--<script src="app.js"></script>-->
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                title: 'hello world!',
+                link:  'www.google.com',
+                count: 0,
+                count2: 0
+            },
+            computed: {
+                tryComputed: function () {
+                    // count2 += 1;
+                    return 'computed';
+                }
+            },
+            methods: {
+                changeTitle: function (event) {
+                    this.title = event.target.value;
+                },
+                test: function (event) {
+                    alert("get in test");
+                    this.title = 'bbbbb';
+                    return "aaa";
+                },
+                click: function (step) {
+                    alert("count")
+                    this.count += step;
+
+                },
+                alert: function (str, event) {
+                    alert(str);
+                    alert(event.target.value);
+                },
+                submit: function (str, event) {
+                    alert(str);
+                    alert(event.target.value);
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
